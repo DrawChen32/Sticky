@@ -1,0 +1,74 @@
+/* 纸色 —— 与设计稿 03 组件规格 一致 */
+body[data-paper="paper"] {
+  --bg: #fbf3d9;
+  --line: #e3d6af;
+  --ink: #3b3527;
+  --mute: #8a7f5f;
+  --accent: #d9b84c;
+  --swatch: #e8cf7e;
+}
+body[data-paper="mint"] {
+  --bg: #e6f2e7;
+  --line: #c9dfcc;
+  --ink: #23362a;
+  --mute: #6e8474;
+  --accent: #6e9c7a;
+  --swatch: #8fbfa0;
+}
+body[data-paper="mist"] {
+  --bg: #e4eef7;
+  --line: #c8dbea;
+  --ink: #1f3240;
+  --mute: #6a8199;
+  --accent: #6f9cc4;
+  --swatch: #7fa6c9;
+}
+body[data-paper="blush"] {
+  --bg: #f8e8e9;
+  --line: #e7cfd1;
+  --ink: #3a2a2b;
+  --mute: #8c7173;
+  --accent: #dfa2a6;
+  --swatch: #dfa2a6;
+}
+body[data-paper="stone"] {
+  --bg: #f3f2ec;
+  --line: #dfddd4;
+  --ink: #33322e;
+  --mute: #7a7873;
+  --accent: #a8a69c;
+  --swatch: #a8a69c;
+}
+body[data-paper="ink"] {
+  --bg: #2c2c2e;
+  --line: #3e3e41;
+  --ink: #e6e4de;
+  --mute: #8e8c86;
+  --accent: #e8c56a;
+  --swatch: #3a3a3d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family: -apple-system, "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI",
+    "PingFang SC", "Noto Sans SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: default;
+}

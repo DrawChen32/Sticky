@@ -1,0 +1,11 @@
+# crates.io 镜像（中国大陆网络环境）。
+# 删掉本文件即恢复官方源；Cargo 会从当前目录向上查找 .cargo/config.toml，
+# 所以在 sticky/ 下执行 cargo（或 npm run tauri dev）都能生效。
+[source.crates-io]
+replace-with = "rsproxy-sparse"
+
+[source.rsproxy-sparse]
+registry = "sparse+https://rsproxy.cn/index/"
+
+[net]
+git-fetch-with-cli = true

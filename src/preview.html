@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>便利贴 · 界面预览</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #efeee9;
+        color: #3b3527;
+        font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI",
+          "Noto Sans SC", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        padding: 30px 34px 48px;
+        max-width: 1040px;
+      }
+      h1 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0 0 6px;
+      }
+      .sub {
+        font-size: 12px;
+        line-height: 1.7;
+        color: #8a8880;
+        margin: 0 0 26px;
+        max-width: 620px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px 26px;
+        align-items: flex-start;
+      }
+      .cell {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .cell iframe {
+        border: 0;
+        display: block;
+        background: transparent;
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(60, 50, 30, 0.1);
+      }
+      .cell.tall iframe {
+        border-radius: 12px;
+        box-shadow: 0 8px 26px rgba(60, 50, 40, 0.12);
+      }
+      .cap {
+        font-size: 11px;
+        color: #92908a;
+        letter-spacing: 0.02em;
+      }
+      .hint {
+        margin-top: 34px;
+        font-size: 11px;
+        line-height: 1.9;
+        color: #a09e97;
+        border-top: 1px solid #e3e1d9;
+        padding-top: 16px;
+        max-width: 720px;
+      }
+      code {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 10.5px;
+        background: #e6e4dc;
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: #6b675c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>便利贴 · 界面预览</h1>
+      <p class="sub">
+        这是真实页面 note.html / list.html 在浏览器里的渲染结果，和 Tauri 窗口里跑的是同一套
+        HTML 与 CSS，不是另画的图。
+      </p>
+
+      <div class="row">
+        <div class="cell">
+          <iframe src="note.html?c=paper" width="260" height="170"></iframe>
+          <span class="cap">常态 · 米黄 260×170</span>
+        </div>
+        <div class="cell">
+          <iframe src="note.html?c=mint&collapsed=1" width="260" height="32"></iframe>
+          <span class="cap">折叠态 · 薄荷 260×32</span>
+        </div>
+        <div class="cell">
+          <iframe src="note.html?c=mist&edit=1" width="300" height="250"></iframe>
+          <span class="cap">编辑态 · 雾蓝 300×250</span>
+        </div>
+        <div class="cell">
+          <iframe src="note.html?c=ink" width="260" height="170"></iframe>
+          <span class="cap">墨黑纸 · 夜间用</span>
+        </div>
+        <div class="cell">
+          <iframe src="note.html?c=blush&ghost=1&empty=1" width="260" height="170"></iframe>
+          <span class="cap">幽灵态 + 空便签占位</span>
+        </div>
+        <div class="cell tall">
+          <iframe src="list.html" width="340" height="480"></iframe>
+          <span class="cap">托盘面板 · 全部便签</span>
+        </div>
+      </div>
+
+      <p class="hint">
+        想单独看某一张：<code>note.html?c=ink&edit=1</code> 这类参数直接改地址栏即可 ——
+        <code>c</code> 是纸色（paper / mint / mist / blush / stone / ink），还有
+        <code>edit</code>、<code>collapsed</code>、<code>ghost</code>、<code>empty</code>。
+        这些参数只在浏览器里生效，进了 Tauri 就走真实数据。
+      </p>
+    </div>
+  </body>
+</html>

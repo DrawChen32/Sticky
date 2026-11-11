@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>全部便签</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="list.css" />
+  </head>
+  <body>
+    <div class="panel">
+      <div class="hd">
+        <span class="hd-t">全部便签</span>
+        <span class="hd-c" id="count">—</span>
+      </div>
+
+      <div class="search">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+          <circle cx="6" cy="6" r="4.4" stroke="#8C8A84" stroke-width="1.2" />
+          <path d="M9.4 9.4l2.6 2.6" stroke="#8C8A84" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <input id="q" placeholder="搜索便签内容" spellcheck="false" />
+      </div>
+
+      <div class="list" id="list"></div>
+
+      <div class="ft">
+        <span>Ctrl + Alt + N 随手记一条</span>
+        <span class="ft-k">Esc 关闭</span>
+      </div>
+    </div>
+    <script src="list.js"></script>
+  </body>
+</html>

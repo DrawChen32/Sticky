@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>便利贴</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="note.css" />
+  </head>
+  <body data-paper="paper" data-collapsed="false" data-ghost="false" data-editing="false">
+    <div class="note">
+      <header class="bar" id="bar" data-tauri-drag-region>
+        <span class="dot"></span>
+        <span class="ttl" id="ttl" data-tauri-drag-region>新便签</span>
+        <div class="acts">
+          <button class="ib" id="pin" title="置顶">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M5.4 1.4h3.2M6.3 1.6v3.1L3.8 7.6h6.4L7.7 4.7V1.6M7 7.6v4.4" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="ib" id="ghost" title="半透明">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.1" />
+              <path d="M7 2.4a4.6 4.6 0 0 1 0 9.2z" fill="currentColor" />
+            </svg>
+          </button>
+          <button class="ib" id="fold" title="折叠">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path id="foldPath" d="M3.6 8.7L7 5.3l3.4 3.4" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="ib" id="close" title="删除这张便签">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3.6 3.6l6.8 6.8M10.4 3.6l-6.8 6.8" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="tools" id="tools">
+        <button data-cmd="bold" class="bold" title="加粗">B</button>
+        <button data-cmd="italic" class="ital" title="斜体">I</button>
+        <button data-cmd="underline" title="下划线">U</button>
+        <span class="sep"></span>
+        <button data-cmd="insertUnorderedList" title="项目符号">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="2.6" cy="5" r="1.2" fill="currentColor" />
+            <rect x="6.2" y="4.2" width="8" height="1.6" rx="0.8" fill="currentColor" />
+            <circle cx="2.6" cy="10.6" r="1.2" fill="currentColor" />
+            <rect x="6.2" y="9.8" width="5.6" height="1.6" rx="0.8" fill="currentColor" />
+          </svg>
+        </button>
+        <button data-act="todo" title="插入待办">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="1" y="3.4" width="7" height="7" rx="1.7" stroke="currentColor" stroke-width="1.1" />
+            <path d="M2.6 6.9l1.7 1.7 2.7-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="10.4" y="5.6" width="4.6" height="1.6" rx="0.8" fill="currentColor" />
+            <rect x="10.4" y="10" width="3" height="1.6" rx="0.8" fill="currentColor" />
+          </svg>
+        </button>
+        <span class="sep"></span>
+        <button class="sw" data-c="paper" title="米黄"></button>
+        <button class="sw" data-c="mint" title="薄荷"></button>
+        <button class="sw" data-c="mist" title="雾蓝"></button>
+        <button class="sw" data-c="blush" title="藕粉"></button>
+        <button class="sw" data-c="stone" title="灰石"></button>
+        <button class="sw" data-c="ink" title="墨黑"></button>
+      </div>
+
+      <div
+        class="body"
+        id="body"
+        contenteditable="true"
+        spellcheck="false"
+        data-ph="随手记一句…"
+      ></div>
+    </div>
+
+    <script src="note.js"></script>
+  </body>
+</html>

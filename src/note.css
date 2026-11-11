@@ -1,0 +1,240 @@
+.note {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 幽灵态：整张便签半透明，让后面的内容透出来 */
+body[data-ghost="true"] .note {
+  opacity: 0.72;
+}
+
+/* ---------------- 标题栏 ---------------- */
+.bar {
+  height: 32px;
+  flex: 0 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 0 12px;
+  cursor: default;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--accent);
+  flex: 0 0 8px;
+}
+
+.ttl {
+  flex: 1 1 auto;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acts {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+
+.ib {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.bar:hover .ib,
+.ib.on {
+  opacity: 1;
+}
+.ib.on {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.ib:hover {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.ib.on:hover {
+  background: color-mix(in srgb, var(--accent) 34%, transparent);
+}
+.ib svg {
+  display: block;
+}
+
+/* ---------------- 编辑工具栏 ---------------- */
+.tools {
+  height: 39px;
+  flex: 0 0 39px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.12s, max-height 0.12s;
+}
+body[data-editing="true"] .tools {
+  opacity: 1;
+  max-height: 39px;
+}
+
+.tools button {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--mute);
+}
+.tools button:hover {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  color: var(--ink);
+}
+.tools .bold {
+  font-weight: 700;
+  color: var(--ink);
+}
+.tools .ital {
+  font-style: italic;
+}
+.tools .sep {
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: var(--line);
+}
+
+.sw {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin: 0 2px;
+}
+.sw[data-c="paper"] {
+  background: #e8cf7e;
+}
+.sw[data-c="mint"] {
+  background: #8fbfa0;
+}
+.sw[data-c="mist"] {
+  background: #7fa6c9;
+}
+.sw[data-c="blush"] {
+  background: #dfa2a6;
+}
+.sw[data-c="stone"] {
+  background: #a8a69c;
+}
+.sw[data-c="ink"] {
+  background: #3a3a3d;
+}
+.sw.sel {
+  box-shadow: 0 0 0 1.5px var(--bg), 0 0 0 3px var(--ink);
+}
+
+/* ---------------- 正文 ---------------- */
+.body {
+  flex: 1 1 auto;
+  padding: 10px 14px 14px;
+  font-size: var(--fs, 13px);
+  line-height: 1.62;
+  color: var(--ink);
+  outline: none;
+  overflow-y: auto;
+  user-select: text;
+  word-break: break-word;
+}
+.body:empty::before {
+  content: attr(data-ph);
+  color: var(--mute);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.body ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.body li {
+  margin: 0;
+}
+
+/* 折叠态：只剩标题条 */
+body[data-collapsed="true"] .tools,
+body[data-collapsed="true"] .body {
+  display: none;
+}
+
+/* ---------------- 待办项 ---------------- */
+.body .tk {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 1px 0;
+}
+.body .tk .cbx {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.42em;
+  border-radius: 4px;
+  border: 1.2px solid var(--mute);
+  opacity: 0.7;
+  position: relative;
+}
+.body .tk[data-done="1"] .cbx {
+  background: var(--accent);
+  border-color: var(--accent);
+  opacity: 1;
+}
+.body .tk[data-done="1"] .cbx::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1.5px;
+  width: 7px;
+  height: 4px;
+  border-left: 1.6px solid var(--bg);
+  border-bottom: 1.6px solid var(--bg);
+  transform: rotate(-45deg);
+}
+.body .tk .txt {
+  flex: 1 1 auto;
+  min-width: 0;
+  outline: none;
+}
+.body .tk[data-done="1"] .txt {
+  color: var(--mute);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

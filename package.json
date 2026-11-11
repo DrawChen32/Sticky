@@ -1,0 +1,14 @@
+{
+  "name": "sticky",
+  "private": true,
+  "version": "0.1.0",
+  "description": "便利贴 · 纯离线桌面便签",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.1.0"
+  }
+}
