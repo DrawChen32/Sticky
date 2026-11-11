@@ -1,0 +1,46 @@
+name: 打包 Windows
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 仓库里的 .cargo/config.toml 指向国内镜像，CI 在国外，直连 crates.io 更快
+      - name: 移除国内镜像配置
+        shell: bash
+        run: rm -f .cargo/config.toml
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "src-tauri -> target"
+
+      - name: 安装依赖
+        run: npm install
+
+      # NSIS 装出来是一个双击即用的安装包；同时保留免安装的单文件 exe
+      - name: 构建
+        uses: tauri-apps/tauri-action@v0
+        with:
+          args: --bundles nsis
+
+      - name: 上传产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: sticky-windows
+          if-no-files-found: error
+          path: |
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/sticky.exe
